@@ -1,23 +1,36 @@
+function getValueById(id){
+    const getvalue = document.getElementById(id).value ;
+    return parseFloat(getvalue)
+}
+function showError(id){
+    document.getElementById(id).classList.remove('hidden')
+}
+
+
 const calculateButton = document.getElementById('calculate');
 calculateButton.addEventListener("click", function () {
-    const income = parseFloat(document.getElementById("income").value);
-    const software = parseFloat((document.getElementById("software").value));
-    const courses = parseFloat((document.getElementById("courses").value));
-    const internet = parseFloat((document.getElementById("internet").value));
+    const income =getValueById("income")
+    const software = getValueById("software")
+    const courses = getValueById("courses")
+    const internet = getValueById("internet")
     if (income <= 0 || isNaN(income)) {
-        document.getElementById("income-error").classList.remove("hidden");
+        // document.getElementById("income-error").classList.remove("hidden");
+        showError("income-error")
         return;
     }
     if (software <= 0 || isNaN(software)) {
-        document.getElementById("software-error").classList.remove("hidden")
+        // document.getElementById("software-error").classList.remove("hidden")
+        showError("software-error")
         return;
     }
     if (courses <= 0 || isNaN(courses)) {
-        document.getElementById("courses-error").classList.remove("hidden")
+        // document.getElementById("courses-error").classList.remove("hidden")
+        showError("courses-error")
         return;
     }
     if (internet <= 0 || isNaN(internet)) {
-        document.getElementById("internet-error").classList.remove("hidden")
+        // document.getElementById("internet-error").classList.remove("hidden")
+        showError("internet-error")
         return;
     }
 
@@ -50,10 +63,15 @@ calculateButton.addEventListener("click", function () {
 const calculateSavingsButton = document.getElementById("calculate-savings")
 calculateSavingsButton.addEventListener("click", function () {
     const savingsPercentage = parseFloat(document.getElementById("savings").value);
-    const income = parseFloat(document.getElementById("income").value);
-    const software = parseFloat((document.getElementById("software").value));
-    const courses = parseFloat((document.getElementById("courses").value));
-    const internet = parseFloat((document.getElementById("internet").value));
+    // const income = parseF.value);
+    // const software = parseFloat((document.getElementById("software").value));
+    // const courses = parseFloat((document.getElementById("courses").value));
+    // const internet = parseFloat((document.getElementById("internet").value));
+     const income =getValueById("income")
+    const software = getValueById("software")
+    const courses = getValueById("courses")
+    const internet = getValueById("internet")
+
     const totalExpenses = software + courses + internet;
     const balance = income - totalExpenses;
     const savingsAmout = document.getElementById("savings-amount");
