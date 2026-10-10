@@ -4,7 +4,28 @@ calculateButton.addEventListener("click", function () {
     const software = parseFloat((document.getElementById("software").value));
     const courses = parseFloat((document.getElementById("courses").value));
     const internet = parseFloat((document.getElementById("internet").value));
+    if (income <= 0 || isNaN(income)) {
+        document.getElementById("income-error").classList.remove("hidden");
+        return;
+    }
+    if (software <= 0 || isNaN(software)) {
+        document.getElementById("software-error").classList.remove("hidden")
+        return;
+    }
+    if (courses <= 0 || isNaN(courses)) {
+        document.getElementById("courses-error").classList.remove("hidden")
+        return;
+    }
+    if (internet <= 0 || isNaN(internet)) {
+        document.getElementById("internet-error").classList.remove("hidden")
+        return;
+    }
+
+
     const totalExpenses = software + courses + internet;
+    if(totalExpenses>income){
+        document.getElementById("logic-error").classList.remove("hidden")
+    }
     const balance = income - totalExpenses;
     const totalexpensesElement = document.getElementById("total-expenses")
     totalexpensesElement.innerText = totalExpenses.toFixed(2);
@@ -54,6 +75,15 @@ historyTab.addEventListener("click", function () {
     historyTab.classList.add('text-white', 'font-semibold', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600')
     assistantTab.classList.remove('text-white', 'font-semibold', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600')
     document.getElementById("expense-form").classList.add('hidden');
-    document.getElementById("history-section").classList.remove('hidden')
+    document.getElementById("history-section").classList.remove('hidden');
+
+})
+
+// assistant button implementation
+assistantTab.addEventListener("click", function () {
+    historyTab.classList.remove('text-white', 'font-semibold', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600')
+    assistantTab.classList.add('text-white', 'font-semibold', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600')
+    document.getElementById("expense-form").classList.remove('hidden');
+    document.getElementById("history-section").classList.add('hidden')
 
 })
